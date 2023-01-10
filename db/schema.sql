@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS bookinv_db;
+CREATE DATABASE bookinv_db;
