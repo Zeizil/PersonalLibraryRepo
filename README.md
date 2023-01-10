@@ -1,4 +1,5 @@
-#Personal Best Books Comments (title subject to change)
+# PersonalLibraryRepo
+Repository for a user's personal reading list.
 
 # Puphub
 
