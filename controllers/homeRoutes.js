@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');  // will need ot add other models
+const { User } = require('../models');  // will need to add other models
 const withAuth = require('../utils/auth');
 
 router.get('/login', (req, res) => {
@@ -12,7 +12,10 @@ router.get('/login', (req, res) => {
   res.render('login');  // make sure we have a view that matches
 });
 
-// do a 404 page '*' route
+  // catch (err) {
+  // res.status(500).json(err);
+  //   }
+  // });
 
 
 module.exports = router;
