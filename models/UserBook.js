@@ -1,19 +1,17 @@
+// 'Link' table for the user-to-book (M:M) relationship
+
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Comment extends Model {}
+class UserBook extends Model {}
 
-Comment.init(
+UserBook.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -35,8 +33,8 @@ Comment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'comment',
+    modelName: 'userbook',
   }
 );
 
-module.exports = Comment;
+module.exports = UserBook;
