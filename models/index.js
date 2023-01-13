@@ -3,11 +3,9 @@ const Book = require('./Book');
 const Comment = require('./Comment');
 const UserBook = require('./UserBook');
 
-Comment.belongsTo(User, {
-    foreignKey: 'user_id'
-  });
 
-
+// Users can have many comments, and individual comments will always belong to one user (1:M)
+  // Cascade delete not needed (at least, at this moment) as we won't be allowing users to be deleted
 
 User.hasMany(Comment, {
   foreignKey: 'user_id',
