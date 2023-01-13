@@ -11,8 +11,11 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
+
+// Require/register the 'handlebars-dateformat' package
+  // this either needs be called on 'hbs' vbl or 'exphbs' variable -- pretty sure its 'hbs' though
+// hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 const sess = {
   secret: process.env.SESS_SECRET,
