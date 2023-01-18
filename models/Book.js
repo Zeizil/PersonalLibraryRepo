@@ -19,6 +19,10 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     image_url: {
       type: DataTypes.STRING,
       allowNull: false,
