@@ -5,25 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bestseller Books Inventory</title>
-  <link rel="stylesheet" href="/css/jass.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gentium+Book+Basic&display=swap" rel="stylesheet">
+  {{!-- <link rel="stylesheet" href="/css/jass.css"> --}}
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <div class="">
     <header class="">
-      <h1>
-        Bookz
-      </h1>
-      <nav>
+      <nav class="relative w-full flex flex-wrap items-center justify-around py-4 bg-purple-500 shadow-lg navbar navbar-expand-lg">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="" id="logout">logout</button>
+        <a href="/profile" class="w-24 rounded-full shadow-lg border-black border-2 border-solid">Profile</a> |
+        <a class="w-24 rounded-full shadow-lg border-black border-2 border-solid" id="logout">Logout</a>
         {{else}}
-        <a href="/login">login</a>
+        <a href="/login" class="w-24 rounded-full shadow-lg border-black hover:bg-purple-300 border-2 border-solid">Login</a>
         {{/if}}
       </nav>
+      <h1 class="text-8xl p-7">Book Reviews</h1>
     </header>
     <main class="">
       <!-- Render the sub layout -->
