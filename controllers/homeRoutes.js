@@ -71,12 +71,11 @@ router.get('/mybooks/:id', async (req, res) => {  //this path should be a userId
 
     // Find the one book (by ID - req.params.id) assoc with that user THROUGH UserBook
     const bookData = await Book.findOne({
-      include: [{ model: User, through: UserBook, as: 'books_in_inventory' }],
+      attributes: { exclude: ['user_id'] },
       where: {
-        user_id: req.session.user_id, // this can also probly be req.params.userId
-        book_id: req.params.bookId
+        book_id: req.params.id
       }
-    })
+    });
 
     // Serialize
     const book = bookData.get({ plain: true });

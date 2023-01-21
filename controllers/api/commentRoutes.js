@@ -3,7 +3,7 @@ const { User, Book, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // Find all comments (associated with a single book) -- not needed for rendering, but we can still have an api path for this
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const commentData = await Comment.findAll({
       include: {
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create a comment
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create(req.body);
     res.status(200).json(newComment);
@@ -48,7 +48,7 @@ router.put('/:id', withAuth, async (req, res) => {
 })
 
 // DELETE a comment
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const commentData = await Comment.destroy({
       where: {
