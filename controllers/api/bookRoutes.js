@@ -2,60 +2,6 @@ const router = require('express').Router();
 const { User, Book, UserBook } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// !! Both of these 'gets' (the ensuing two routes) will be moved OUT of '/api'
-
-// Get all books associated with a user (no need to grab comments here)
-router.get('/', async (req, res) => {
-    try {
-
-    // Find all books assocaited with that user THROUGH UserBook
-    const bookData = await Book.findAll({
-      include: [{ model: User, through: UserBook, as: 'books_in_inventory'}],
-      where: { user_id : req.session.user_id } // where do i put in the 'where the user id matches' piece?
-    });
-
-    // Serialize
-    const books = bookData.map((book) => book.get({ plain: true }));
-
-    // dev-step -- curious what this looks like
-    console.log(books);
-
-    // Render 'yourbooks' template, with the array passed in (as object)
-    //res.render('inventory template', { books });
-
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
-// Get a single book by its ID, assoicated with that user -- also gets the comment for that book, from that user
-router.get('/:id', async (req, res) => {
-  try {
-
-    // Find the one book (by ID - req.params.id) assoc with that user THROUGH UserBook
-    const bookData = await Book.findOne({
-      include: [{ model: User, through: UserBook, as: 'books_in_inventory'}],
-      where: { user_id : req.session.user_id,
-               book_id: req.params.id
-       }
-    })
-
-    // Serialize
-    const book = bookData.get({ plain: true });
-
-    // Find the comment assocaited with this book AND this user
-
-    // Render 'book' template with that one book, and its assoc. user comment passed in
-    // res.render('show one book template', { book, comment });
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-// The following two WILL stay in this file
-
 // Adds a book to DB, and LINKS it to a user (WIP)
 router.post('/', withAuth, async (req, res) => {
   try {
@@ -77,7 +23,6 @@ router.post('/', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 // Removes a book from user's inventory -- doesn't delete the book, but deletes the link of that book from that user
 router.delete('/:id', withAuth, async (req, res) => {
