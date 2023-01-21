@@ -3,24 +3,23 @@ const { User, Book, UserBook } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // Adds a book to DB, and LINKS it to a user (WIP)
-router.post('/', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {    // withAtuh needed
   try {
-    // May want to add logic to check if this book is already in the DB (match isbns)
 
     const newBook = await Book.create({
       ...req.body,                        // make sure the front end JS passes the correct fields in, as I'm not validating req.body here
       user_id: req.session.user_id
     });
 
-    // Link the user to that book thru UserBook (I actually don't think this is how this works -- utilize the M:M rel'n ship in the above 'book' creeation..)
+    // Link the user to that book thru UserBook
     const newUserBookLink = await UserBook.create({
       book_id: newBook.id,
       user_id: req.session.user_id
     });
 
-    res.status(200).json(newBook, newUserBookLink);
+    res.status(200).json({newBook, newUserBookLink});
   } catch (error) {
-    res.status(500).json(err);
+    res.status(500).json(error);
   }
 });
 
