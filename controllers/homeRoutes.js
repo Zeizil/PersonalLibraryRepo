@@ -43,12 +43,12 @@ router.post('/', async (req, res) => {      // will have to move this to '/api/s
 // Book/comment 'get&renders' -- this should probly go in a 'userRoutes' (not to be confused with '/api/userRoutes') -- maybe 'profileRoutes'? but on base level, parallel to this file
 
 // Get all books associated with a user (no need to grab comments here)
-router.get('/:userId', async (req, res) => {   // this path probly should be a user id and will probly move out of this file
+router.get('/mybooks', async (req, res) => {   // this path probly should be a user id and will probly move out of this file
   try {
 
   // Find all books assocaited with that user THROUGH UserBook
   const bookData = await Book.findAll({
-    include: [{ model: User, through: UserBook, as: 'books_in_inventory'}],
+    attributes: { exclude: ['user_id'] },
     where: { user_id : req.session.user_id } // where do i put in the 'where the user id matches' piece?
   });
 
@@ -60,14 +60,13 @@ router.get('/:userId', async (req, res) => {   // this path probly should be a u
 
   // Render 'yourbooks' template, with the array passed in (as object)
   //res.render('inventory template', { books });
-
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // Get a single book by its ID, assoicated with that user -- also gets the comment for that book, from that user
-router.get('/:userId/:bookId', async (req, res) => {  //this path should be a userId, then the bookId, and again, move out of this file
+router.get('/mybooks/:id', async (req, res) => {  //this path should be a userId, then the bookId, and again, move out of this file
   try {
 
     // Find the one book (by ID - req.params.id) assoc with that user THROUGH UserBook
