@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Book, UserBook } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Adds a book to DB, and LINKS it to a user (WIP)
+// Adds a book to DB, and LINKS it to a user
 router.post('/', withAuth, async (req, res) => {    // withAtuh needed
   try {
 
@@ -28,14 +28,14 @@ router.delete('/:id', withAuth, async (req, res) => {
   try {
 
     // Look for BOTH the userID (who wants to remove the book) (req.session.user_id), AND the ID of that book (req.params.id)
-    const deledLink = await UserBook.destroy({
+    const deletedLink = await UserBook.destroy({
       where: {
         book_id: req.params.id,
         user_id: req.session.user_id
       }
     });
 
-    res.status(200).json(deledLink);  //make sure the front-end fetch request redirects to the right spot (probly the inventory list of a users books, now without this one)
+    res.status(200).json(deletedLink);  //make sure the front-end fetch request redirects to the right spot (probly the inventory list of a users books, now without this one)
   } catch (error) {
     res.status(500).json(error)
   }
