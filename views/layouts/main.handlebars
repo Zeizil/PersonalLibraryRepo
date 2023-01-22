@@ -19,7 +19,8 @@
       <nav class="relative w-full flex flex-wrap items-center justify-around py-4 bg-purple-500 shadow-lg navbar navbar-expand-lg">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile" class="w-24 rounded-full shadow-lg border-black border-2 border-solid">Profile</a> |
+        <a href="/yourBooks" class="w-24 rounded-full shadow-lg border-black border-2 border-solid">Profile</a> |
+        <a href="/homepage" class="w-24 rounded-full shadow-lg border-black border-2 border-solid">Home</a>
         <a class="w-24 rounded-full shadow-lg border-black border-2 border-solid" id="logout">Logout</a>
         {{else}}
         <a href="/login" class="w-24 rounded-full shadow-lg border-black hover:bg-purple-300 border-2 border-solid">Login</a>
