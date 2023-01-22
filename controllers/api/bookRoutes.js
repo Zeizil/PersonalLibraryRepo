@@ -1,73 +1,44 @@
 const router = require('express').Router();
-const { User, Book, UserBook } = require('../../models');  
+const { User, Book, UserBook } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-// Get all books associated with a user
-router.get('/', async (req, res) => {
-    try {
-
-    // Grab the users ID (req.session.user_id)
-
-    // Find all books assocaited with that user THROUGH UserBook
-
-    // Serialize
-
-    // Render 'yourbooks' template, with the array passed in (as object)
-
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
-// Get a single book by its ID, assoicated with that user
-router.get('/:id', async (req, res) => {
+// Adds a book to DB, and LINKS it to a user
+router.post('/', withAuth, async (req, res) => {    // withAtuh needed
   try {
 
-    // Grab the users ID (req.session.user_id)
+    const newBook = await Book.create({
+      ...req.body,                        // make sure the front end JS passes the correct fields in, as I'm not validating req.body here
+      user_id: req.session.user_id
+    });
 
-    // Find the one book (by ID - req.params.id) assoc with that user THROUGH UserBook
+    // Link the user to that book thru UserBook
+    const newUserBookLink = await UserBook.create({
+      book_id: newBook.id,
+      user_id: req.session.user_id
+    });
 
-    // Serialize
-
-    // Render 'book' template with that one book passed in
-
-
-    //EXAMPLE OF A M:M GET-ONE (from miniproject):
-    // try {
-    //   const locationData = await Location.findByPk(req.params.id, {
-    //     // JOIN with travellers, using the Trip through table
-    //     include: [{ model: Traveller, through: Trip, as: 'location_travellers' }]
-    //   });
-  
-
-    res.status(200).json(bookData);
-  } catch (err) {
-    res.status(500).json(err);
+    res.status(200).json({newBook, newUserBookLink});
+  } catch (error) {
+    res.status(500).json(error);
   }
-});
-
-// Adds a book to a user
-router.post('/', withAuth, async (req, res) => {
-
-  // Look for the book that was selected in the DB
-
-  // If it isn't in there, add it
-
-  // Link the user to that book thru UserBook
-
-  // Redirect to the 'yourbooks' template
-
 });
 
 // Removes a book from user's inventory -- doesn't delete the book, but deletes the link of that book from that user
 router.delete('/:id', withAuth, async (req, res) => {
+  try {
 
-  // Look for BOTH the userID (who wants to remove the book) (req.session.user_id), AND the ID of that book (req.params.id)
+    // Look for BOTH the userID (who wants to remove the book) (req.session.user_id), AND the ID of that book (req.params.id)
+    const deletedLink = await UserBook.destroy({
+      where: {
+        book_id: req.params.id,
+        user_id: req.session.user_id
+      }
+    });
 
-  // With those two IDs, find the row in UserBook whose 2 foreign keys match user_id and book_id and delete THAT
-
-  // Redirect to the 'yourbooks' template
+    res.status(200).json(deletedLink);  //make sure the front-end fetch request redirects to the right spot (probly the inventory list of a users books, now without this one)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 });
 
 

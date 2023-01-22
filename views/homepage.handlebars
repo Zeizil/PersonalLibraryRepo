@@ -1,0 +1,24 @@
+<!-- Loop over each object in the books array -->
+{{#each projects as |project| }}
+<div class="row mb-4 project">
+  <div class="col-md-5">
+    {{!-- Insert cover image here --}}
+    <h2>
+      <a href="/project/{{project.id}}">{{project.name}}</a>
+      {{!-- can use this for reviews --}}
+    </h2>
+    {{!-- Insert author here --}}
+    <p>By {{project.user.name}}</p>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{!-- Insert book description here --}}
+      {{project.description}}
+    </p>
+    <p>
+      {{!-- this will connect to javascript to submit form --}}
+      <button class="btn btn-primary">Save Book</button>
+    </p>
+  </div>
+</div>
+{{/each}}

@@ -1,7 +1,8 @@
 # PersonalLibraryRepo
 Repository for a user's personal reading list.
 
-# PersonalLibrary
+
+# Personal Library
 
 ![Logo]
 
@@ -11,7 +12,8 @@ Group Project #2 for UNH Full-Stack Web Development Boot Camp.
 
 ***
 
-## Development Team Members
+
+## Personal Library Development Team Members
 
 - [Anu Khadka](https://github.com/anukhadka19)
 - [Elizabeth Philbrook](https://github.com/Zeizil)
@@ -63,6 +65,8 @@ This website will display an interactive catalog of books from a database of bes
 
 ### Heroku Application Page ()
 
+
+- [Personal Library Heroku Application](https://)
 
 ***
 
