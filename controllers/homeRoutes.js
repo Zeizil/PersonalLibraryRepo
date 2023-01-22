@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 });
 
 // handles search results
-router.post('/', async (req, res) => {      // probably SHOULD move this to '/api/searchRoutes' or something
+router.post('/', (req, res) => {      // probably SHOULD move this to '/api/searchRoutes' or something
 
   const { resultsArr } = req.body;    // make sure when passing this in from the front-end that the vbl matches 'resultsArr'
 
