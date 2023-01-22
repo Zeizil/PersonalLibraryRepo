@@ -16,10 +16,10 @@ Comment.belongsTo(User, {
 });
 
 
-// Books can have many comments, and individual comments will always belong to one book (1:M)
+// Books can have one comment, and individual comments will always belong to one book (1:M)
   // Cascade delete not needed (at least, at this moment) as we won't be allowing books to be deleted
 
-Book.hasMany(Comment, {
+Book.hasOne(Comment, {
   foreignKey: 'book_id',
 });
 
