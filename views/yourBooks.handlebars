@@ -1,51 +1,34 @@
-<div class="row">
-  <div class="col-auto justify-center">
-    <h2 class="text-center">Welcome, {{name}}!</h2>
-  </div>
-</div>
-
-{{!-- saved books --}}
-{{!-- 
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Your Saved Books:</h3>
-
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
-      </div>
-
-      
-
-
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div> --}}
 
 {{!-- write a review for a book --}}
 
 <div class="flex flex-row items-center justify-evenly mt-4">
   <div class="flex-col col-md-6">
 
-    <div class="flex-col col-md-6 project-list">
+    <div class="flex-col col-md-6 book-list">
       <h3>Your Saved Books:</h3>
       {{!-- each will link to the single book page --}}
       {{!-- criteria: does the user have saved books? If not, it'll just say "no books saved" --}}
+      {{!-- saved books has remove book option --}}
+    {{#if books }}
+      {{#each books as |book|}}
+      <div class="book-form text-2xl rounded-lg border-2 border-black shadow-md justify-center">
+        <img src="{{ book.image_url }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';" alt="cover of book">
+        <a href="/book/{{book.id}}">Title: {{book.title}}</a>
+        <p>Author: {{ book.author }}</p>
+        <p>ISBN#: {{ book.isbn }}</p>
+        <p>
+          <button class="delete-btn rounded-full shadow-lg border-black border-2 border-solid">Delete</button>
+        </p>
+      </div>
+      {{/each}}
+    {{else}}
       <p>No books saved yet.</p>
-    {{!-- saved books has remove book option --}}
-
-    {{!-- <a href="/singlebook/{{book.id}}">{{book.name}}</a> --}}
-    {{!-- <p>By: {{book.author}}</p> --}}
+    {{/if}}
+  </div>
 
     
     </div>
   </div>
 </div>
 
-<script src="./js/profile.js"></script>
+<script src="./js/mybooks.js"></script>
