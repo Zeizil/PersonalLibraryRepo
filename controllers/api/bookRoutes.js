@@ -14,7 +14,7 @@ router.post('/', withAuth, async (req, res) => {
 
     res.status(200).json(newBook);
   } catch (error) {
-    res.status(500).json(error);
+    res.render('server-error');
   }
 });
 
@@ -30,7 +30,7 @@ router.delete('/:id', withAuth, async (req, res) => {
 
     res.status(200).json(deletedBook);  //make sure the front-end fetch request redirects to the right spot (probly the inventory list of a users books, now without this one)
   } catch (error) {
-    res.status(500).json(error)
+    res.render('server-error');
   }
 });
 

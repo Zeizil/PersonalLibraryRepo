@@ -4,26 +4,26 @@ const withAuth = require('../../utils/auth');
 
 
 // Get all books associated with a user (no need to grab comments here)
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
-  // Find all books assocaited with that user
-  const bookData = await Book.findAll({
-    attributes: { exclude: ['user_id'] },
-    where: { user_id : req.session.user_id }
-  });
+    // Find all books assocaited with that user
+    const bookData = await Book.findAll({
+      attributes: { exclude: ['user_id'] },
+      where: { user_id: req.session.user_id }
+    });
 
-  // Serialize and render
-  const books = bookData.map((book) => book.get({ plain: true }));
+    // Serialize and render
+    const books = bookData.map((book) => book.get({ plain: true }));
 
-  res.render('yourBooks', { books });
+    res.render('yourBooks', { books });
 
   } catch (err) {
-    res.status(500).json(err);
+    res.render('server-error');
   }
 });
 
 // Get a single book by its ID, assoicated with that user -- also gets the comment for that book, from that user
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     // Find the one book and its comment
     const bookData = await Book.findOne({
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
 
     res.render('book', { book });
   } catch (err) {
-    res.status(500).json(err);
+    res.render('server-error');
   }
 });
 
