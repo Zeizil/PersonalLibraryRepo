@@ -11,7 +11,6 @@ router.get('/login', (req, res) => {
   res.render('login');  // make sure we have a view that matches
 });
 
-
 // 'home' page, shows the search form, as well as results in the case that occurs
 router.get('/', (req, res) => {
 
@@ -26,15 +25,21 @@ router.get('/', (req, res) => {
 
 });
 
-
 // handles search results
-router.post('/', async (req, res) => {      // will have to move this to '/api/searchRoutes'
+router.post('/', async (req, res) => {      // probably SHOULD move this to '/api/searchRoutes' or something
 
   const { resultsArr } = req.body;    // make sure when passing this in from the front-end that the vbl matches 'resultsArr'
 
   req.session.searchResults = resultsArr;
 
   res.status(200).json(resultsArr);
+
+});
+
+//catchall bad paths
+router.get('*', async (req, res) => {
+  res.status(404).json( {"message" : "404'd"} );  // temporary until we get 
+  //  res.render('404');          // render the 404 template
 
 });
 
