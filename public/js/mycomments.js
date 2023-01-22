@@ -9,10 +9,10 @@ const commentFormHandler = async (event) => {
     window.location.toString().split('/').length - 1
   ];
 
-  if (comment) {
+  if (content) {
     const response = await fetch(`/api/comments`, {
       method: 'POST',
-      body: JSON.stringify({ title, comment }),
+      body: JSON.stringify({ title, content }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -29,14 +29,14 @@ const commentFormHandler = async (event) => {
 const editFormHandler = async (event) => {
   event.preventDefault();
 
-  const comment = document.querySelector('#comment-edit').value.trim();
+  const content = document.querySelector('#comment-edit').value.trim();
 
-  console.log(comment);
+  console.log(content);
 
   if (comment) {
     const response = await fetch(`/api/comments`, {
       method: 'POST',
-      body: JSON.stringify({ comment }),
+      body: JSON.stringify({ content }),
       headers: {
         'Content-Type': 'application/json',
       },
