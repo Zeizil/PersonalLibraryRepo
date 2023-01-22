@@ -1,0 +1,27 @@
+<!-- Loop over each object in the search result -->
+{{#each projects as |project| }}
+<div class="row mb-4 project">
+  {{!-- search bar div here --}}
+  <div class="col-md-5">
+    {{!-- search results from js --}}
+    <form class="book-form text-2xl rounded-lg border-2 border-black shadow-md justify-center">
+      {{!-- Insert cover image here --}}
+      <h2>
+        <a href="/project/{{project.id}}">{{project.name}}</a>
+        {{!-- can use this for reviews --}}
+      </h2>
+      {{!-- Insert author here --}}
+      <p>By {{project.user.name}}</p>
+      <p>
+        {{!-- Insert book description here --}}
+        {{project.description}}
+      </p>
+      <p>
+        {{!-- this will connect to javascript to submit form --}}
+        {{!-- redirect to login if not logged in --}}
+        <button class="save-btn rounded-full shadow-lg border-black border-2 border-solid">Save Book</button>
+      </p>
+    </form>
+  </div>
+</div>
+{{/each}}

@@ -1,6 +1,7 @@
 # PersonalLibraryRepo
 Repository for a user's personal reading list.
 
+
 # Personal Library
 
 ![Logo]
@@ -10,6 +11,7 @@ Repository for a user's personal reading list.
 Group Project #2 for UNH Full-Stack Web Development Boot Camp.
 
 ***
+
 
 ## Personal Library Development Team Members
 
@@ -62,6 +64,7 @@ This website will display an interactive catalog of books from a database of bes
 - [GitHub Repository](https://github.com/Zeizil)
 
 ### Heroku Application Page ()
+
 
 - [Personal Library Heroku Application](https://)
 

@@ -1,8 +1,6 @@
 const User = require('./User');
 const Book = require('./Book');
 const Comment = require('./Comment');
-const UserBook = require('./UserBook');
-
 
 // Users can have many comments, and individual comments will always belong to one user (1:M)
   // Cascade delete not needed (at least, at this moment) as we won't be allowing users to be deleted
@@ -16,11 +14,11 @@ Comment.belongsTo(User, {
 });
 
 
-// Books can have many comments, and individual comments will always belong to one book (1:M)
-  // Cascade delete not needed (at least, at this moment) as we won't be allowing books to be deleted
+// Books can have one comment, and individual comments will always belong to one book (1:M)
 
-Book.hasMany(Comment, {
+Book.hasOne(Comment, {
   foreignKey: 'book_id',
+  onDelete: 'CASCADE'
 });
 
 Comment.belongsTo(Book, {
@@ -28,23 +26,16 @@ Comment.belongsTo(Book, {
 });
 
 
-// Users can have many books, and books can have many users
-  // Aliases subject to change
-User.belongsToMany(Book, {
-  through: {
-    model: UserBook,
-    unique: false
-  },
-  as: 'users_with_book'
+// Users can have many books, and individual books will always belong to one user (1:M)
+  // Cascade delete not needed (at least, at this moment) as we won't be allowing users to be deleted
+
+User.hasMany(Book, {
+  foreignKey: 'user_id',
 });
 
-Book.belongsToMany(User, {
-  through: {
-    model: UserBook,
-    unique: false
-  },
-  as: 'books_in_inventory'
+Book.belongsTo(User, {
+  foreignKey: 'user_id'
 });
 
 
-module.exports = { User, Book, Comment, UserBook };
+module.exports = { User, Book, Comment };
