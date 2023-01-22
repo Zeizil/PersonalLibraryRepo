@@ -8,7 +8,7 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('login');  // make sure we have a view that matches
+  res.render('login');
 });
 
 // 'home' page, shows the search form, as well as results in the case that occurs
@@ -36,8 +36,8 @@ router.post('/', async (req, res) => {      // probably SHOULD move this to '/ap
 
 });
 
-//catchall bad paths
-// router.get('*', async (req, res) => {
+// // catch all bad paths
+// router.all('*', (req, res) => {
 //   res.render('404');
 // });
 
