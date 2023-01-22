@@ -1,27 +1,25 @@
-<!-- Loop over each object in the search result -->
-{{#each projects as |project| }}
-<div class="row mb-4 project">
-  {{!-- search bar div here --}}
-  <div class="col-md-5">
-    {{!-- search results from js --}}
+<div class="row mb-4 text-center">
+  <form action="" id="book-search">
+    <input type="text">
+    <button type="submit" class="w-24 rounded-full shadow-sm border-black border-2 border-solid">Submit</button>
+  </form>
+</div>
+<div  class="col-md-5 text-center search-result">
+  {{#if results }}
+    {{#each results as |result|}}
     <form class="book-form text-2xl rounded-lg border-2 border-black shadow-md justify-center">
-      {{!-- Insert cover image here --}}
-      <h2>
-        <a href="/project/{{project.id}}">{{book.name}}</a>
-        {{!-- can use this for reviews --}}
-      </h2>
-      {{!-- Insert author here --}}
-      <p>By {{project.user.name}}</p>
-      <p>
-        {{!-- Insert book description here --}}
-        {{project.description}}
-      </p>
+      <img src="{{ result.image_url }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';" alt="cover of book">
+      <p>Title: {{ result.title }}</p>
+      <p>Author: {{ result.author }}</p>
+      <p>ISBN#: {{ result.isbn }}</p>
       <p>
         {{!-- this will connect to javascript to submit form --}}
         {{!-- redirect to login if not logged in --}}
         <button class="save-btn rounded-full shadow-lg border-black border-2 border-solid">Save Book</button>
       </p>
     </form>
-  </div>
+    {{/each}}
+  {{else}}
+    <p>No results</p>
+  {{/if}}
 </div>
-{{/each}}

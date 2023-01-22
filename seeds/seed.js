@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const sequelize = require('../config/connection');
-const { User, Book, UserBook } = require('../models');
+const { User, Book } = require('../models');
 
 const userData = require('./userData.json');
 // const projectData = require('./projectData.json');
@@ -61,12 +61,12 @@ const seedDatabase = async () => {
     },
   ]);
 
-  await UserBook.bulkCreate([
-    {
-      user_id: 1,
-      book_id: 1,
-    },
-  ]);
+  // await UserBook.bulkCreate([
+  //   {
+  //     user_id: 1,
+  //     book_id: 1,
+  //   },
+  // ]);
 
   process.exit(0);
 };
