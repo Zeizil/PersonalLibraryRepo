@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Book, Comment } = require('../../models');  
+const { Book, Comment } = require('../../models');  
 const withAuth = require('../../utils/auth');
 
 // Find all comments (associated with a single book) -- not needed for rendering, but we can still have an api path for this

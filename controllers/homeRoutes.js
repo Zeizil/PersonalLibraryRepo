@@ -1,6 +1,4 @@
 const router = require('express').Router();
-const { User, Book, Comment, UserBook } = require('../models');
-const withAuth = require('../utils/auth');
 
 
 router.get('/login', (req, res) => {
@@ -13,7 +11,6 @@ router.get('/login', (req, res) => {
   res.render('login');  // make sure we have a view that matches
 });
 
-
 // 'home' page, shows the search form, as well as results in the case that occurs
 router.get('/', (req, res) => {
 
@@ -21,16 +18,15 @@ router.get('/', (req, res) => {
   if (req.session.searchResults) {
     results = req.session.searchResults;
     delete req.session.searchResults;
-      // res.render('homesearch template', { results });    // remember the correct view name (the home/search view)
+    res.render('homepage', { results })
   } else {
-    // res.render('homesearch template');   // rendering WITHOUT reuslts passed in, because there are no results
+    res.render('homepage');
   }
 
 });
 
-
 // handles search results
-router.post('/', async (req, res) => {      // will have to move this to '/api/searchRoutes'
+router.post('/', async (req, res) => {      // probably SHOULD move this to '/api/searchRoutes' or something
 
   const { resultsArr } = req.body;    // make sure when passing this in from the front-end that the vbl matches 'resultsArr'
 
@@ -40,60 +36,10 @@ router.post('/', async (req, res) => {      // will have to move this to '/api/s
 
 });
 
-
-// Book/comment 'get&renders' -- this should probly go in a 'userRoutes' (not to be confused with '/api/userRoutes') -- maybe 'profileRoutes'? but on base level, parallel to this file
-
-// Get all books associated with a user (no need to grab comments here)
-router.get('/mybooks', withAuth, async (req, res) => {   // this path probly should be a user id and will probly move out of this file
-  try {
-
-  // Find all books assocaited with that user THROUGH UserBook
-  const bookData = await Book.findAll({
-    attributes: { exclude: ['user_id'] },
-    where: { user_id : req.session.user_id } // where do i put in the 'where the user id matches' piece?
-  });
-
-  // Serialize
-  const books = bookData.map((book) => book.get({ plain: true }));
-
-  // dev-step -- curious what this looks like
-  console.log(books);
-
-  // Render 'yourbooks' template, with the array passed in (as object)
-  //res.render('inventory template', { books });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// Get a single book by its ID, assoicated with that user -- also gets the comment for that book, from that user
-router.get('/mybooks/:id', withAuth, async (req, res) => {  //this path should be a userId, then the bookId, and again, move out of this file
-  try {
-
-    // Find the one book and its comment
-    const bookData = await Book.findOne({
-      include: {
-        model: Comment,
-        attributes: ['content'],
-      },
-      attributes: { exclude: ['user_id'] },
-      where: {
-        id: req.params.id
-      }
-    });
-
-    // Serialize
-    const book = bookData.get({ plain: true });
-
-    console.log(book);
-
-    // Render 'book' template with that one book, and its assoc. user comment passed in
-    // res.render('show one book template', { book });
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//catchall bad paths
+// router.get('*', async (req, res) => {
+//   res.render('404');
+// });
 
 
 module.exports = router;
