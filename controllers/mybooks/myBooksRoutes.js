@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 
 
 // Get all books associated with a user (no need to grab comments here)
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
   // Find all books assocaited with that user
   const bookData = await Book.findAll({
@@ -23,7 +23,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 // Get a single book by its ID, assoicated with that user -- also gets the comment for that book, from that user
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     // Find the one book and its comment
     const bookData = await Book.findOne({
