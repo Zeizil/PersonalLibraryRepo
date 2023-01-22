@@ -20,11 +20,12 @@ router.get('/', (req, res) => {
   let results;
   if (req.session.searchResults) {
     results = req.session.searchResults;
+    delete req.session.searchResults;
+      // res.render('homesearch template', { results });    // remember the correct view name (the home/search view)
+  } else {
+    // res.render('homesearch template');   // rendering WITHOUT reuslts passed in, because there are no results
   }
 
-  delete req.session.searchResults;
-
-  // res.render('test-home', { results });    // remember the correct view name (the home/search view)
 });
 
 
@@ -43,7 +44,7 @@ router.post('/', async (req, res) => {      // will have to move this to '/api/s
 // Book/comment 'get&renders' -- this should probly go in a 'userRoutes' (not to be confused with '/api/userRoutes') -- maybe 'profileRoutes'? but on base level, parallel to this file
 
 // Get all books associated with a user (no need to grab comments here)
-router.get('/mybooks', async (req, res) => {   // this path probly should be a user id and will probly move out of this file
+router.get('/mybooks', withAuth, async (req, res) => {   // this path probly should be a user id and will probly move out of this file
   try {
 
   // Find all books assocaited with that user THROUGH UserBook
@@ -66,40 +67,28 @@ router.get('/mybooks', async (req, res) => {   // this path probly should be a u
 });
 
 // Get a single book by its ID, assoicated with that user -- also gets the comment for that book, from that user
-router.get('/mybooks/:id', async (req, res) => {  //this path should be a userId, then the bookId, and again, move out of this file
+router.get('/mybooks/:id', withAuth, async (req, res) => {  //this path should be a userId, then the bookId, and again, move out of this file
   try {
 
-    // Find the one book (by ID - req.params.id) assoc with that user THROUGH UserBook
+    // Find the one book and its comment
     const bookData = await Book.findOne({
+      include: {
+        model: Comment,
+        attributes: ['content'],
+      },
       attributes: { exclude: ['user_id'] },
       where: {
-        book_id: req.params.id
+        id: req.params.id
       }
     });
 
     // Serialize
     const book = bookData.get({ plain: true });
 
-    // Find the comment assocaited with this book AND this user
-
-    const commentData = await Comment.findByPk(req.params.id, {   // to get the ID here, well probly have to go into the 'book' object from above and get it there
-      include: [{ model: Book }],
-    });
-
-    const comment = commentData.get({ plain: true });
-
-    res.render('comment', {       // make sure this view matches
-      ...comment,
-      logged_in: req.session.logged_in
-    });
-
-    if (!commentData) {
-      res.status(404).json({ message: 'No results found.' });
-      return;
-    }
+    console.log(book);
 
     // Render 'book' template with that one book, and its assoc. user comment passed in
-    // res.render('show one book template', { book, comment });
+    // res.render('show one book template', { book });
 
   } catch (err) {
     res.status(500).json(err);
