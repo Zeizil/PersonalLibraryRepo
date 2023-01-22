@@ -1,8 +1,3 @@
-<div class="row">
-  <div class="col-auto justify-center">
-    <h2 class="text-center">Welcome, {{name}}!</h2>
-  </div>
-</div>
 
 {{!-- write a review for a book --}}
 
@@ -16,17 +11,15 @@
       {{!-- saved books has remove book option --}}
     {{#if books }}
       {{#each books as |book|}}
-      <form class="book-form text-2xl rounded-lg border-2 border-black shadow-md justify-center">
+      <div class="book-form text-2xl rounded-lg border-2 border-black shadow-md justify-center">
         <img src="{{ book.image_url }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';" alt="cover of book">
         <a href="/singlebook/{{book.id}}">Title: {{book.title}}</a>
         <p>Author: {{ book.author }}</p>
         <p>ISBN#: {{ book.isbn }}</p>
         <p>
-          {{!-- this will connect to javascript to submit form --}}
-          {{!-- redirect to login if not logged in --}}
-          <button class="save-btn rounded-full shadow-lg border-black border-2 border-solid">Save Book</button>
+          <button class="delete-btn rounded-full shadow-lg border-black border-2 border-solid">Delete</button>
         </p>
-      </form>
+      </div>
       {{/each}}
     {{else}}
       <p>No books saved yet.</p>
