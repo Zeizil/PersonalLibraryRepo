@@ -18,9 +18,9 @@ router.get('/', (req, res) => {
   if (req.session.searchResults) {
     results = req.session.searchResults;
     delete req.session.searchResults;
-      // res.render('homesearch template', { results });    // remember the correct view name (the home/search view)
+    res.render('homepage', { results })
   } else {
-    // res.render('homesearch template');   // rendering WITHOUT reuslts passed in, because there are no results
+    res.render('homepage');
   }
 
 });
@@ -37,11 +37,9 @@ router.post('/', async (req, res) => {      // probably SHOULD move this to '/ap
 });
 
 //catchall bad paths
-router.get('*', async (req, res) => {
-  res.status(404).json( {"message" : "404'd"} );  // temporary until we get 
-  //  res.render('404');          // render the 404 template
-
-});
+// router.get('*', async (req, res) => {
+//   res.render('404');
+// });
 
 
 module.exports = router;
