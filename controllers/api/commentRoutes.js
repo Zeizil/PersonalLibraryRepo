@@ -35,12 +35,13 @@ router.post('/', withAuth, async (req, res) => {
 router.put('/:id', withAuth, async (req, res) => {
   try {
     const updateComment = await Comment.update({
-      ...req.body,
-      user_id: req.session.user_id,
+      ...req.body
+    },
+    {
       where: {
         id: req.params.id,
       },
-    });
+   });
 
     res.status(200).json(updateComment);
   } catch (err) {
