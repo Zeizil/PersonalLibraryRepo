@@ -14,7 +14,7 @@ router.get('/', withAuth, async (req, res) => {
 
     res.status(200).json(commentData);
   } catch (err) {
-    res.status(500).json(err);
+    res.render('server-error');
   }
 });
 
@@ -27,7 +27,7 @@ router.post('/', withAuth, async (req, res) => {
     });  // remember book_id needs to be passed in from the front end JS file
     res.status(200).json(comment);
   } catch (err) {
-    res.status(400).json(err);
+    res.render('server-error');
   }
 });
 
@@ -45,7 +45,7 @@ router.put('/:id', withAuth, async (req, res) => {
 
     res.status(200).json(updateComment);
   } catch (err) {
-    res.status(400).json(err);
+    res.render('server-error');
   }
 });
 
@@ -60,7 +60,7 @@ router.delete('/:id', withAuth, async (req, res) => {
 
     res.status(200).json(deletedComment);
   } catch (err) {
-    res.status(500).json(err);
+    res.render('server-error');
   }
 });
   
