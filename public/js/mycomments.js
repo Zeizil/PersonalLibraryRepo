@@ -1,18 +1,15 @@
-const title = document.querySelector('input[name="book-title]').value.trim();
-console.log('testing');
-console.log(title);
+const content = document.querySelector('#comment-content').value.trim()
+console.log(content);
+const book_id = document.querySelector('#book_id').value.trim()
+console.log(book_id);
 
 const commentFormHandler = async (event) => {
   event.preventDefault();
 
-  const title = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
-
-  if (content) {
+  if (content && book_id) {
     const response = await fetch(`/api/comments`, {
       method: 'POST',
-      body: JSON.stringify({ title, content }),
+      body: JSON.stringify({ content, book_id }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -29,14 +26,15 @@ const commentFormHandler = async (event) => {
 const editFormHandler = async (event) => {
   event.preventDefault();
 
-  const content = document.querySelector('#comment-edit').value.trim();
+  const content = document.querySelector('#comment-content').value.trim();
+  const book_id = document.querySelector('#book-id').value.trim()
 
-  console.log(content);
+  console.log(content, book_id);
 
-  if (comment) {
+  if (content && book_id) {
     const response = await fetch(`/api/comments`, {
       method: 'POST',
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ content, book_id}),
       headers: {
         'Content-Type': 'application/json',
       },
