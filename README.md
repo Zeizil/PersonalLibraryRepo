@@ -2,23 +2,12 @@
 Repository for a user's personal reading list.
 
 
-# Personal Library
+# Personal Book Review Library
 
-![Logo]
 
 ***
 
 Group Project #2 for UNH Full-Stack Web Development Boot Camp.
-
-***
-
-
-## Personal Library Development Team Members
-
-- [Anu Khadka](https://github.com/anukhadka19)
-- [Elizabeth Philbrook](https://github.com/Zeizil)
-- [Tyler Reimer](https://github.com/tjr1387)
-- [Stephanie Tidwell](https://github.com/stephtidwell)
 
 ***
 
@@ -89,6 +78,13 @@ As an enthusiastic reader, I want to be able to browse through a catalog of best
 
 ## Usage
 
-This application is used to search for best seller books....
+
 
 ***
+
+## Personal Library Development Team Members
+
+- [Anu Khadka](https://github.com/anukhadka19)
+- [Elizabeth Philbrook](https://github.com/Zeizil)
+- [Tyler Reimer](https://github.com/tjr1387)
+- [Stephanie Tidwell](https://github.com/stephtidwell)
