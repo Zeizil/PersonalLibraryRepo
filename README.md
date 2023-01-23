@@ -1,8 +1,3 @@
-# PersonalLibraryRepo
-Repository for a user's personal reading list.
-
-
-# Personal Book Review Library
 
 
 ***
@@ -13,20 +8,14 @@ Group Project #2 for UNH Full-Stack Web Development Boot Camp.
 
 ## Description
 
-This website will display an interactive catalog of books from a database of bestsellers that users can browse through and rate their preferences. Users can create an account and log in to generate a personalized list of books on which they can comment on and leave their ratings that new or returning users can then view.
+This website displays an interactive catalog of books from a database of bestsellers that users can browse through and rate their preferences. Users can create an account and log in to generate a personalized list of books on which they can comment on and leave their ratings that new or returning users can then view.
 
 
 ***
 
-## Table of Contents
+## User Story
 
-- [Technology Used](#technology-used)
-- [NPM Packages Used](#npm-packages-used)
-- [Links](#links)
-- [Screenshots](#screenshots)
-- [User Story](#user-story)
-- [Usage](#usage)
-
+As an enthusiastic reader, I want to be able to browse through a catalog of bestsellers to view other users’ reviews and leave comments, so that I can make recommendations to others while also selecting my next read that caters to my preferences. 
 
 ***
 
@@ -52,8 +41,7 @@ This website will display an interactive catalog of books from a database of bes
 
 - [GitHub Repository](https://github.com/Zeizil)
 
-### Heroku Application Page ()
-
+### Heroku Application Page 
 
 - [Personal Library Heroku Application](https://)
 
@@ -64,15 +52,6 @@ This website will display an interactive catalog of books from a database of bes
 ### Screenshots
 
 ![Screenshots of Login Screen]
-
-***
-
-## User Story
-
-
-```md
-As an enthusiastic reader, I want to be able to browse through a catalog of bestsellers to view other users’ reviews and leave comments, so that I can make recommendations to others while also selecting my next read that caters to my preferences. 
-```
 
 ***
 
