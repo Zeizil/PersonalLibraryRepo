@@ -1,4 +1,4 @@
-# Personal Book Library
+
 
 ***
 
@@ -57,7 +57,7 @@ As an enthusiastic reader, I want to be able to browse through a catalog of best
 
 ## Usage
 
-This application is used to search for best seller books....
+
 
 ***
 
