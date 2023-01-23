@@ -1,10 +1,4 @@
-# PersonalLibraryRepo
-Repository for a user's personal reading list.
-
-
-# Personal Library
-
-![Logo]
+# Personal Book Library
 
 ***
 
@@ -12,32 +6,16 @@ Group Project #2 for UNH Full-Stack Web Development Boot Camp.
 
 ***
 
-
-## Personal Library Development Team Members
-
-- [Anu Khadka](https://github.com/anukhadka19)
-- [Elizabeth Philbrook](https://github.com/Zeizil)
-- [Tyler Reimer](https://github.com/tjr1387)
-- [Stephanie Tidwell](https://github.com/stephtidwell)
-
-***
-
 ## Description
 
-This website will display an interactive catalog of books from a database of bestsellers that users can browse through and rate their preferences. Users can create an account and log in to generate a personalized list of books on which they can comment on and leave their ratings that new or returning users can then view.
+This website displays an interactive catalog of books from a database of bestsellers that users can browse through and rate their preferences. Users can create an account and log in to generate a personalized list of books on which they can comment on and leave their ratings that new or returning users can then view.
 
 
 ***
 
-## Table of Contents
+## User Story
 
-- [Technology Used](#technology-used)
-- [NPM Packages Used](#npm-packages-used)
-- [Links](#links)
-- [Screenshots](#screenshots)
-- [User Story](#user-story)
-- [Usage](#usage)
-
+As an enthusiastic reader, I want to be able to browse through a catalog of bestsellers to view other users’ reviews and leave comments, so that I can make recommendations to others while also selecting my next read that caters to my preferences. 
 
 ***
 
@@ -63,8 +41,7 @@ This website will display an interactive catalog of books from a database of bes
 
 - [GitHub Repository](https://github.com/Zeizil)
 
-### Heroku Application Page ()
-
+### Heroku Application Page 
 
 - [Personal Library Heroku Application](https://)
 
@@ -78,17 +55,15 @@ This website will display an interactive catalog of books from a database of bes
 
 ***
 
-## User Story
-
-
-```md
-As an enthusiastic reader, I want to be able to browse through a catalog of bestsellers to view other users’ reviews and leave comments, so that I can make recommendations to others while also selecting my next read that caters to my preferences. 
-```
-
-***
-
 ## Usage
 
 This application is used to search for best seller books....
 
 ***
+
+## Personal Library Development Team Members
+
+- [Anu Khadka](https://github.com/anukhadka19)
+- [Elizabeth Philbrook](https://github.com/Zeizil)
+- [Tyler Reimer](https://github.com/tjr1387)
+- [Stephanie Tidwell](https://github.com/stephtidwell)
