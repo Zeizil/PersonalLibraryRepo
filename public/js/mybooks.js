@@ -12,7 +12,7 @@ const bookFormHandler = async (event) => {
   });
 
   if (response.ok) {
-    document.location.replace('/profile');
+    document.location.replace('/mybooks');
   } else {
     alert('Failed to add book to list');
   }
@@ -37,7 +37,7 @@ const delButtonHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/mybooks');
     } else {
       alert('Failed to remove book from inventory');
     }
