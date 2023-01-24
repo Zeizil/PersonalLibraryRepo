@@ -37,7 +37,7 @@ router.post('/', (req, res) => {      // probably SHOULD move this to '/api/sear
 
 // // catch all bad paths
 // router.all('*', (req, res) => {
-//   res.render('404');
+//   res.render('404', { logged_in: req.session.logged_in });
 // });
 
 
