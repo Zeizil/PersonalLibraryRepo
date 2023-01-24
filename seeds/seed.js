@@ -38,28 +38,9 @@ const seedDatabase = async () => {
 
   await Book.bulkCreate(booksWithCovers);
 
-  await User.bulkCreate([
-    {
-      name: 'Tyler',
-      email: 'tyler@gmail.com',
-      password: 'password12345',
-    },
-    {
-      name: 'Anu',
-      email: 'anu@gmail.com',
-      password: 'password12345',
-    },
-    {
-      name: 'Liz',
-      email: 'liz@gmail.com',
-      password: 'password12345',
-    },
-    {
-      name: 'Stephanie',
-      email: 'stephanie@gmail.com',
-      password: 'password12345',
-    },
-  ]);
+  await User.bulkCreate(userData, { individualHooks: true });
+
+
 
   // await UserBook.bulkCreate([
   //   {
