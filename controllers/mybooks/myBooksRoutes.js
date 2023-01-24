@@ -15,7 +15,7 @@ router.get('/', withAuth, async (req, res) => {
     // Serialize and render
     const books = bookData.map((book) => book.get({ plain: true }));
 
-    res.render('yourBooks', { books });
+    res.render('yourBooks', { books, logged_in: req.session.logged_in });
 
   } catch (err) {
     res.render('server-error');
@@ -40,7 +40,7 @@ router.get('/:id', withAuth, async (req, res) => {
     // Serialize and render
     const book = bookData.get({ plain: true });
 
-    res.render('book', { book });
+    res.render('book', { book, logged_in: req.session.logged_in });
   } catch (err) {
     res.render('server-error');
   }

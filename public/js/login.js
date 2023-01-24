@@ -14,8 +14,8 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      // If successful, redirect the browser to the mybooks page
-      document.location.replace('/mybooks');
+      // If successful, redirect the browser to the profile page
+      document.location.replace('/yourBooks');
     } else {
       alert(response.statusText);
     }
