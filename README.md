@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 # PersonalLibraryRepo
 Repository for a user's personal reading list.
 
 
 ## Personal Book Review Library
-=======
->>>>>>> 9e22ddf0cf4bae1b70177707e661c06957c5079f
 
 
 ***
