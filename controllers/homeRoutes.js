@@ -4,7 +4,7 @@ const router = require('express').Router();
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/');  // this will need to change to the 'show all of a users books' template
+    res.redirect('/');
     return;
   }
 
@@ -18,17 +18,16 @@ router.get('/', (req, res) => {
   if (req.session.searchResults) {
     results = req.session.searchResults;
     delete req.session.searchResults;
-    res.render('homepage', { results })
+    res.render('homepage', { results, logged_in: req.session.logged_in })
   } else {
-    res.render('homepage');
+    res.render('homepage', { logged_in: req.session.logged_in });
   }
-
 });
 
 // handles search results
 router.post('/', (req, res) => {      // probably SHOULD move this to '/api/searchRoutes' or something
 
-  const { resultsArr } = req.body;    // make sure when passing this in from the front-end that the vbl matches 'resultsArr'
+  const { resultsArr } = req.body;
 
   req.session.searchResults = resultsArr;
 
