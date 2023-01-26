@@ -6,7 +6,6 @@ const withAuth = require('../../utils/auth');
 // Adds a book to DB with assoc. user
 router.post('/', withAuth, async (req, res) => {
   try {
-
     const newBook = await Book.create({
       ...req.body,
       user_id: req.session.user_id
@@ -21,7 +20,6 @@ router.post('/', withAuth, async (req, res) => {
 // Removes a book from user's inventory
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-
     const deletedBook = await Book.destroy({
       where: {
         id: req.params.id
