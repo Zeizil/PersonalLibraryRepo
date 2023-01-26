@@ -1,14 +1,13 @@
 
 // DELETE book event
 const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
 
-    // Event listener for deleting item 
-    const deleteButton = document.querySelectorAll('deleteBtn');
-    for (let i = 0; i < deleteButton.length + 1; i++) {
-      deleteButton[i].addEventListener('click', delButtonHandler);
-    }
+  if (event.target.tagName == 'BUTTON') {
+    //navigate thru the DOM to grab the individual book URL
+    const urlVal = event.target.parentElement.parentElement.children[1].href;
+    //extract the book ID from the URL
+    const urlSplit = urlVal.split('/');
+    const id = urlSplit[urlSplit.length - 1];
 
     const response = await fetch(`/api/books/${id}`, {
       method: 'DELETE',
@@ -23,6 +22,6 @@ const delButtonHandler = async (event) => {
 };
 
 
-// document
-//   .querySelector('.book-list')
-//   .addEventListener('click', delButtonHandler);
+document
+  .querySelector('.book-list')
+  .addEventListener('click', delButtonHandler);
