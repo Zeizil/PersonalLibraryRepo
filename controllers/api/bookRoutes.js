@@ -20,13 +20,27 @@ router.post('/', withAuth, async (req, res) => {
 // Removes a book from user's inventory
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const deletedBook = await Book.destroy({
+    // find the user_id of the book to be deleted
+    const bookData = await Book.findOne({
+      attributes: { exclude: ['title', 'isbn', 'author', 'image_url'] },
       where: {
         id: req.params.id
       }
     });
-
-    res.status(200).json(deletedBook);  //make sure the front-end fetch request redirects to the right spot (probly the inventory list of a users books, now without this one)
+    
+    // check to make sure the deleter is the owner of the book, then delete it
+      //not serializing because I only need the one field from boookData
+    if (bookData.dataValues.user_id === req.session.user_id) {
+      const deletedBook = await Book.destroy({
+        where: {
+          id: req.params.id
+        }
+      });
+  
+      res.status(200).json(deletedBook);
+    } else {
+      res.status(403).json({ "message": "Forbidden"});
+    }
   } catch (error) {
     res.render('server-error');
   }
