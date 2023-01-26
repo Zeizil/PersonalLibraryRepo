@@ -17,8 +17,38 @@
    }
  };
 
+// adds the book
+const addBookHandler = async (event) => {
+  event.preventDefault();
+
+  if (event.target.classList[0] === 'save-btn') {
+    const bookDataContainer = event.target.parentElement.parentElement;
+
+    const bookObj = {
+      title: bookDataContainer.children[1].innerText.split(':')[1].trim(),
+      author: bookDataContainer.children[2].innerText.split(':')[1].trim(),
+      isbn: bookDataContainer.children[3].innerText.split(':')[1].trim(),
+      image_url: bookDataContainer.children[0].src,
+    }
+
+    const response = await fetch(`/api/books`, {
+      method: 'POST',
+      body: JSON.stringify(bookObj),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace('/mybooks');
+    } else {
+      alert('Failed to add book');
+    }
+  }
+};
+
  // converts search string into proper format for API call (switches spaces out for '+' signs)
-const formatSearchText = function(string) {
+ const formatSearchText = function(string) {
   let result = '';
   for (letter of string) {
     if (letter !== ' ') {
@@ -29,31 +59,6 @@ const formatSearchText = function(string) {
   }
   return result;
 }
-
-// adds the book
-// const newFormHandler = async (event) => {
-//   event.preventDefault();
-
-//   const title = document.querySelector('input[name="book-title]').value.trim();
-//   const isbn = document.querySelector('#book-isbn').value.trim();
-//   const author = document.querySelector('#book-author').value.trim();
-
-//   if (title && isbn && author) {
-//     const response = await fetch(`/api/books`, {
-//       method: 'POST',
-//       body: JSON.stringify({ title, isbn, author }),
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     });
-
-//     if (response.ok) {
-//       document.location.replace('/profile');
-//     } else {
-//       alert('Failed to add book');
-//     }
-//   }
-// };
 
 // Add event listener to search button
 searchForm.addEventListener("submit", async function (event) {
@@ -96,5 +101,5 @@ searchForm.addEventListener("submit", async function (event) {
 });
 
 document
-  .querySelector('.new-book-add')
-  .addEventListener('submit', newFormHandler);
+  .querySelector('.search-result')
+  .addEventListener('click', addBookHandler);
