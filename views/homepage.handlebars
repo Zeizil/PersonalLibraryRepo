@@ -8,7 +8,7 @@
   {{#if results }}
     {{#each results as |result|}}
     <form class="book-form text-2xl rounded-lg border-2 border-black shadow-md justify-center">
-      <img src="{{ result.image_url }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';" alt="cover of book">
+      <img src="{{ result.image_url }}" onerror="this.onerror=null;this.src='./public/images/placeholder-book.jpg';" alt="cover of book">
       <p>Title: {{ result.title }}</p>
       <p>Author: {{ result.author }}</p>
       <p>ISBN#: {{ result.isbn }}</p>

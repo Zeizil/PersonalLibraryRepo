@@ -2,7 +2,8 @@
 <div class="flex flex-col flex-auto text-center">
   {{!-- cover image --}}
 
-  <img src="{{ result.image_url }}" onerror="this.onerror=null;this.src='https://picsum.photos/200';" alt="cover of book" class="h-20 w-20 text-center">
+  <img src="{{ result.image_url }}" onerror="this.onerror=null;this.src='./public/images/placeholder-book.jpg';" alt="cover of book" class="h-20 w-20 text-center">
+  {{!-- make above match the one in yourBooks --}}
 
   {{!-- title of book - book.title (etc) --}}
   <h2>{{book.title}}</h2>
@@ -19,12 +20,16 @@
     <form class="form new-review-form">
       <div class="form-group">
         <label for="review-content">Write a Review:</label>
-        <textarea class="form-input" id="review-content" name="review-content">{{book.comment.content}}</textarea>
+        <textarea class="form-input border-2 border-black h-10" id="review-content" name="review-content">{{book.comment.content}}</textarea>
       </div>
       <div class="form-group">
-        <button type="submit" class="add-btn btn-primary w-24 rounded-full shadow-lg border-black border-2 border-solid">Add Comment</button>
+        {{!-- add if statements to limit visibility, style buttons --}}
+        {{#if book.comment.content}}
         <button type="submit" class="edit-btn btn-primary w-24 rounded-full shadow-lg border-black border-2 border-solid">Edit Comment</button>
         <button type="click" class="del-btn btn-primary w-24 rounded-full shadow-lg border-black border-2 border-solid">Delete Comment</button>
+        {{else}}
+        <button type="submit" class="add-btn btn-primary w-24 rounded-full shadow-lg border-black border-2 border-solid">Add Comment</button>
+        {{/if}}
       </div>
     </form>
   </div>
