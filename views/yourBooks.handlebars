@@ -13,9 +13,9 @@
     {{#if books }}
       {{#each books as |book|}}
       <div class="book-form text-2xl rounded-lg border-2 border-black shadow-md justify-center">
-        <img src="{{ book.image_url }}" onerror="this.onerror=null;this.src='./public/images/placeholder-book.jpg';" alt="cover of book">
+        <img src="{{ book.image_url }}" onerror="this.onerror=null;this.src='../public/images/placeholder-book.jpg';" alt="cover of book">
         {{!-- add images folder, find placeholder image (small) --}}
-        <a href="/book/{{book.id}}">Title: {{book.title}}</a>
+        <a href="/mybooks/{{book.id}}">Title: {{book.title}}</a>
         <p>Author: {{ book.author }}</p>
         <p>ISBN#: {{ book.isbn }}</p>
         <p>
