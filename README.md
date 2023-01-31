@@ -11,6 +11,14 @@ Status: Half-Baked
 
 This website displays an interactive catalog of books from a database of bestsellers that users can browse through and rate their preferences. Users can create an account and log in to generate a personalized list of books on which they can comment on and leave their ratings that new or returning users can then view.
 
+## Table of Contents
+
+- [User Story](#userstory)
+- [Usage](#usage)
+- [Technogolies](#technologiesused)
+- [Heroku Page](#herokuapplicationpage)
+- [Team Members](#personallibrarydevelopmentteammembers)
+- [License](#license)
 
 ## User Story
 
@@ -37,14 +45,14 @@ Screenshots:
 - [Personal Library Heroku Application](https://frozen-dusk-71829.herokuapp.com/)
 
 
-## License
-
-None
-
-
 ## Personal Library Development Team Members
 
 - [Anu Khadka](https://github.com/anukhadka19)
 - [Elizabeth Philbrook](https://github.com/Zeizil)
 - [Tyler Reimer](https://github.com/tjr1387)
 - [Stephanie Tidwell](https://github.com/stephtidwell)
+
+
+## License
+
+None
